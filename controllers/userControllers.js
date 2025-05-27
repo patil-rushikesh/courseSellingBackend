@@ -21,20 +21,13 @@ const handleSignUp = async (req, res) => {
     }
     const { email, password, firstName, lastName } = req.body
     const hashedPassword = await bcrypt.hash(password, 5)
-    console.log({
-        email, 
-        password: hashedPassword, 
-        firstName, 
-        lastName
-    });
     try {
-        const user = await userModel.create({
+        await userModel.create({
             email, 
             password: hashedPassword, 
             firstName, 
             lastName
         })
-        console.log(user)
     } catch (err) {
         return res.status(400).json({
             message: "You are Already Signed Up"
