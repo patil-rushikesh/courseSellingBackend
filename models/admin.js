@@ -1,7 +1,7 @@
 const {Schema, default: mongoose} = require("mongoose")
 const adminSchema = new Schema({
     email: {type: String, unique: true},
-    passowrd: String,
+    password: String,
     firstName: String,
     lastName: String
 })

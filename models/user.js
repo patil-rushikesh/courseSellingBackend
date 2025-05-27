@@ -1,7 +1,7 @@
 const {Schema, mongo, default: mongoose} = require("mongoose")
 const userSchema = Schema({
     email: {type: String, unique: true},
-    passowrd: String,
+    password: String,
     firstName: String,
     lastName: String
 })

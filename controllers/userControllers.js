@@ -12,7 +12,6 @@ const handleSignUp = async (req, res) => {
         firstName: z.string().min(3),
         lastName: z.string().min(3)
     })
-
     const parseData = requiredBody.safeParse(req.body)
     if (!parseData.success) {
         return res.json({
@@ -22,16 +21,26 @@ const handleSignUp = async (req, res) => {
     }
     const { email, password, firstName, lastName } = req.body
     const hashedPassword = await bcrypt.hash(password, 5)
+    console.log({
+        email, 
+        password: hashedPassword, 
+        firstName, 
+        lastName
+    });
     try {
-        await userModel.create({
-            email, password: hashedPassword, firstName, lastName
+        const user = await userModel.create({
+            email, 
+            password: hashedPassword, 
+            firstName, 
+            lastName
         })
+        console.log(user)
     } catch (err) {
         return res.status(400).json({
             message: "You are Already Signed Up"
         })
     }
-    return res.json(201).json({
+    return res.status(201).json({
         message: "SignUp Successfull!"
     })
 }
