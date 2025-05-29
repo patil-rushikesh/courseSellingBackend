@@ -73,7 +73,7 @@ const handleCourseAdd = async (req, res) => {
     const adminId = req.adminId
     const requiredBody = z.object({
         title: z.string().min(3),
-        decription: z.string().min(10),
+        description: z.string().min(10),
         imageURL: z.string().url(),
         price: z.number().positive()
     })
